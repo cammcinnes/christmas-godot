@@ -1,0 +1,143 @@
+[gd_scene load_steps=21 format=3 uid="uid://b4pkhnjjq2vvy"]
+
+[ext_resource type="Script" path="res://scripts/player.cs" id="1_46x05"]
+[ext_resource type="Texture2D" uid="uid://ccor7yxhklkks" path="res://Mr_C/Walk.png" id="1_qmvsp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ethrw"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53thf"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rf8si"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc0bn"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1jpe"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onh71"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4nu7"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycj4p"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpdxo"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bppuc"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j04nx"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(240, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgfsg"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(264, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fd1fr"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(288, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsdrn"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(312, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xvxx"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(336, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23cwr"]
+atlas = ExtResource("1_qmvsp")
+region = Rect2(360, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ose70"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ethrw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53thf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rf8si")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc0bn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1jpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onh71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4nu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycj4p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpdxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bppuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j04nx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgfsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fd1fr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsdrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xvxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23cwr")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5h6kw"]
+size = Vector2(24, 31.5)
+
+[node name="player" type="Area2D"]
+script = ExtResource("1_46x05")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ose70")
+animation = &"walk"
+frame_progress = 0.980764
+speed_scale = 5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_5h6kw")
