@@ -1,11 +1,77 @@
-[gd_scene format=3 uid="uid://c5k4i6bv5n0we"]
+[gd_scene load_steps=11 format=3 uid="uid://c5k4i6bv5n0we"]
+
+[ext_resource type="Script" path="res://scripts/mob.cs" id="1_mv0ry"]
+[ext_resource type="Texture2D" uid="uid://b6u4ekbjtrglk" path="res://snowman/PNG/Snowman-tileset.png" id="2_mf1c8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk8i7"]
+atlas = ExtResource("2_mf1c8")
+region = Rect2(1, 1, 15, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tybin"]
+atlas = ExtResource("2_mf1c8")
+region = Rect2(17, 1, 15, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpt67"]
+atlas = ExtResource("2_mf1c8")
+region = Rect2(33, 1, 15, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih23n"]
+atlas = ExtResource("2_mf1c8")
+region = Rect2(49, 1, 15, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cirkk"]
+atlas = ExtResource("2_mf1c8")
+region = Rect2(65, 24, 15, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ob1m5"]
+atlas = ExtResource("2_mf1c8")
+region = Rect2(81, 24, 15, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ey6p0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk8i7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tybin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpt67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih23n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cirkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ob1m5")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5eqvu"]
+radius = 19.0
+height = 64.0
 
 [node name="mob" type="RigidBody2D"]
+collision_mask = 0
 gravity_scale = 1.66533e-16
+script = ExtResource("1_mv0ry")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ey6p0")
+animation = &"walk"
+frame_progress = 0.94278
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 3)
+shape = SubResource("CapsuleShape2D_5eqvu")

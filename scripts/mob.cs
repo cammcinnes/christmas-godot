@@ -12,4 +12,10 @@ public partial class mob : RigidBody2D
 	public override void _Process(double delta)
 	{
 	}
+
+	// deletes mob when walks off screen
+	private void OnVisibleOnScreenNotifier2DScreenExited()
+	{
+		QueueFree();
+	}
 }
