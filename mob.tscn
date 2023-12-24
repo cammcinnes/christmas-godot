@@ -67,7 +67,7 @@ metadata/_edit_group_ = true
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ey6p0")
 animation = &"walk"
-frame_progress = 0.94278
+frame_progress = 0.702113
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(3, 3)

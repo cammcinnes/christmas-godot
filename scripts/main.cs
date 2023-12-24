@@ -45,7 +45,7 @@ public partial class main : Node
 		mob mob = MobScene.Instantiate<mob>();
 
 		// Choose a random location on Path2D.
-		var mobSpawnLocation = GetNode<PathFollow2D>("MobPath/MobSpawnLocation");
+		var mobSpawnLocation = GetNode<PathFollow2D>("mobPath/mobSpawnLocation");
 		mobSpawnLocation.ProgressRatio = GD.Randf();
 
 		// Set the mob's direction perpendicular to the path direction.
