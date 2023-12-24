@@ -17,6 +17,12 @@ public partial class player : Area2D
 		ScreenSize = GetViewportRect().Size;
 		Hide();
 	}
+	public void Start(Vector2 position)
+	{
+		Position = position;
+		Show();
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -69,5 +75,12 @@ public partial class player : Area2D
 			// flip if velocity is negative
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
+	}
+	private void OnBodyEntered(Node2D body)
+	{
+		Hide(); // Player disappears after being hit.
+		EmitSignal(SignalName.Hit);
+		// Must be deferred as we can't change physics properties on a physics callback.
+		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 	}
 }
