@@ -3,6 +3,9 @@ using System;
 
 public partial class player : Area2D
 {
+
+	[Signal]
+	public delegate void HitEventHandler();
 	// speed at which player moves
 	[Export]
 	public int Speed { get; set; } = 400;
@@ -12,6 +15,7 @@ public partial class player : Area2D
 	public override void _Ready()
 	{
 		ScreenSize = GetViewportRect().Size;
+		Hide();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,6 +54,20 @@ public partial class player : Area2D
 		else
 		{
 			animatedSprite2D.Stop();
+		}
+
+		Position += velocity * (float)delta;
+		Position = new Vector2(
+			x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
+			y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
+		);
+
+		if (velocity.X != 0)
+		{
+			animatedSprite2D.Animation = "walk";
+			animatedSprite2D.FlipV = false;
+			// flip if velocity is negative
+			animatedSprite2D.FlipH = velocity.X < 0;
 		}
 	}
 }
