@@ -142,3 +142,5 @@ speed_scale = 5.0
 position = Vector2(-1, 1)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_5h6kw")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
