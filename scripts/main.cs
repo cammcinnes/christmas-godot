@@ -13,10 +13,12 @@ public partial class main : Node
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
 		GetNode<hud>("HUD").ShowGameOver();
+		GetNode<AudioStreamPlayer>("Music").Stop();
 	}
 	// set up new game
 	public void NewGame()
 	{
+		GetNode<AudioStreamPlayer>("Music").Play();
 		GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
 		_score = 0;
 
