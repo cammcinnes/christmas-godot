@@ -17,6 +17,7 @@ public partial class main : Node
 	// set up new game
 	public void NewGame()
 	{
+		GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
 		_score = 0;
 
 		var player = GetNode<player>("player");

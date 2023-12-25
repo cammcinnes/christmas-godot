@@ -57,13 +57,14 @@ animations = [{
 radius = 19.0
 height = 54.0
 
-[node name="mob" type="RigidBody2D"]
+[node name="mob" type="RigidBody2D" groups=["mobs"]]
 collision_mask = 0
 gravity_scale = 1.66533e-16
 script = ExtResource("1_mv0ry")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_ey6p0")
 animation = &"walk"
