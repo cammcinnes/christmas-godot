@@ -12,6 +12,7 @@ public partial class main : Node
 	{
 		GetNode<Timer>("MobTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
+		GetNode<hud>("HUD").ShowGameOver();
 	}
 	// set up new game
 	public void NewGame()
@@ -23,11 +24,16 @@ public partial class main : Node
 		player.Start(startPosition.Position);
 
 		GetNode<Timer>("StartTimer").Start();
+
+		var hud = GetNode<hud>("HUD");
+		hud.UpdateScore(_score);
+		hud.ShowMessage("Get Ready!");
 	}
 	//increment score every timeout
 	private void OnScoreTimerTimeout()
 	{
 		_score++;
+		GetNode<hud>("HUD").UpdateScore(_score);
 	}
 	// start other timer when start timer has started
 	private void OnStartTimerTimeout()
@@ -56,7 +62,7 @@ public partial class main : Node
 
 		// Add some randomness to the direction.
 		direction += (float)GD.RandRange(-Mathf.Pi / 4, Mathf.Pi / 4);
-		mob.Rotation = direction;
+		// mob.Rotation = direction;
 
 		// Choose the velocity.
 		var velocity = new Vector2((float)GD.RandRange(150.0, 250.0), 0);
@@ -68,7 +74,7 @@ public partial class main : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		NewGame();
+		//NewGame();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
