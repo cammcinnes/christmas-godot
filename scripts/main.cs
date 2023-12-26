@@ -14,12 +14,11 @@ public partial class main : Node
 		GetNode<Timer>("ScoreTimer").Stop();
 		GetNode<hud>("HUD").ShowGameOver();
 		GetNode<AudioStreamPlayer>("Music").Stop();
+		GetNode<AudioStreamPlayer>("Death").Play();
 	}
 	// set up new game
 	public void NewGame()
 	{
-		GetNode<AudioStreamPlayer>("Music").Play();
-		GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
 		_score = 0;
 
 		var player = GetNode<player>("player");
@@ -31,6 +30,7 @@ public partial class main : Node
 		var hud = GetNode<hud>("HUD");
 		hud.UpdateScore(_score);
 		hud.ShowMessage("Get Ready!");
+		GetNode<AudioStreamPlayer>("Music").Play();
 	}
 	//increment score every timeout
 	private void OnScoreTimerTimeout()
