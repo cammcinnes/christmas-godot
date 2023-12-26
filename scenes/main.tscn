@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://bxomb3f1782pj"]
 
 [ext_resource type="Script" path="res://scripts/main.cs" id="1_1lyv5"]
-[ext_resource type="PackedScene" uid="uid://c5k4i6bv5n0we" path="res://mob.tscn" id="2_g65v1"]
-[ext_resource type="PackedScene" uid="uid://b4pkhnjjq2vvy" path="res://player.tscn" id="3_u6if7"]
-[ext_resource type="PackedScene" uid="uid://dw7re7qqma1iq" path="res://hud.tscn" id="4_u4c78"]
-[ext_resource type="AudioStream" uid="uid://dcrnvfqeq47gh" path="res://197466__waveplaysfx__sfx-hit-dropbomb-effect-8.wav" id="5_7r0hs"]
-[ext_resource type="AudioStream" uid="uid://bxel32rcses73" path="res://Mark Wilson X - In the Hall of the Mountain King.mp3" id="5_qo57f"]
+[ext_resource type="PackedScene" uid="uid://c5k4i6bv5n0we" path="res://scenes/mob.tscn" id="2_g65v1"]
+[ext_resource type="PackedScene" uid="uid://b4pkhnjjq2vvy" path="res://scenes/player.tscn" id="3_u6if7"]
+[ext_resource type="PackedScene" uid="uid://dw7re7qqma1iq" path="res://scenes/hud.tscn" id="4_u4c78"]
+[ext_resource type="AudioStream" uid="uid://dcrnvfqeq47gh" path="res://music/197466__waveplaysfx__sfx-hit-dropbomb-effect-8.wav" id="5_7r0hs"]
+[ext_resource type="AudioStream" uid="uid://bxel32rcses73" path="res://music/Mark Wilson X - In the Hall of the Mountain King.mp3" id="5_qo57f"]
 
 [sub_resource type="Curve2D" id="Curve2D_mmmsm"]
 _data = {
