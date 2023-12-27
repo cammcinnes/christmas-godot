@@ -140,11 +140,11 @@ frame_progress = 0.980764
 speed_scale = 5.0
 
 [node name="Muzzle1" type="Marker2D" parent="AnimatedSprite2D"]
-position = Vector2(6, 1.33333)
+position = Vector2(5, -6)
 scale = Vector2(0.333333, 0.333333)
 
 [node name="Muzzle2" type="Marker2D" parent="AnimatedSprite2D"]
-position = Vector2(-6.33333, 1.33333)
+position = Vector2(-5, -6)
 rotation = 3.14159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
