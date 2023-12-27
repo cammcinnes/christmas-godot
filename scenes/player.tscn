@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://b4pkhnjjq2vvy"]
+[gd_scene load_steps=22 format=3 uid="uid://b4pkhnjjq2vvy"]
 
 [ext_resource type="Script" path="res://scripts/player.cs" id="1_46x05"]
 [ext_resource type="Texture2D" uid="uid://ccor7yxhklkks" path="res://Mr_C/Walk.png" id="1_qmvsp"]
+[ext_resource type="AudioStream" uid="uid://ddxlh4iwht8r0" path="res://music/667650__deltacode__weapon_laser1.wav" id="3_y152j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ethrw"]
 atlas = ExtResource("1_qmvsp")
@@ -153,6 +154,10 @@ shape = SubResource("RectangleShape2D_5h6kw")
 
 [node name="LaserTimer" type="Timer" parent="."]
 wait_time = 0.25
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_y152j")
+volume_db = -30.0
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
 [connection signal="timeout" from="LaserTimer" to="." method="OnLaserTimerTimeout"]

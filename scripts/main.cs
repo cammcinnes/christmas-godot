@@ -14,6 +14,8 @@ public partial class main : Node
 		GetNode<Timer>("ScoreTimer").Stop();
 		GetNode<hud>("HUD").ShowGameOver();
 		GetNode<AudioStreamPlayer>("Music").Stop();
+		var player = GetNode<player>("player");
+		player.GetNode<AudioStreamPlayer>("LaserSound").Stop();
 		GetNode<AudioStreamPlayer>("Death").Play();
 	}
 	// set up new game

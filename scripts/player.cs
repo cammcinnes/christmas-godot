@@ -139,11 +139,13 @@ public partial class player : Area2D
 			laser.setDirection(direction);
 			cooldown = false;
 			GetNode<Timer>("LaserTimer").Start();
+			GetNode<AudioStreamPlayer>("LaserSound").Play();
         }
 	}
 	private void OnLaserTimerTimeout()
 	{
 		cooldown = true;
 		GetNode<Timer>("LaserTimer").Stop();
+
 	}
 }
