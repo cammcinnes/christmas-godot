@@ -14,6 +14,7 @@ public partial class player : Area2D
 
 	private Boolean cooldown = true;
 	private Boolean canShoot = false;
+	private Boolean playerPointLeft = false;
 
 	public Vector2 ScreenSize;
 	// Called when the node enters the scene tree for the first time.
@@ -39,11 +40,13 @@ public partial class player : Area2D
 		if (Input.IsActionPressed("move_right"))
 		{
 			velocity.X += 1;
+			playerPointLeft = false;
 		}
 
 		if (Input.IsActionPressed("move_left"))
 		{
 			velocity.X -= 1;
+			playerPointLeft = true;
 		}
 
 		if (Input.IsActionPressed("move_down"))
@@ -97,20 +100,29 @@ public partial class player : Area2D
 	private void Shoot()
 	{
 		var scene = GD.Load<PackedScene>("res://scenes/Laser.tscn"); // Adjust the path as needed
-        var muzzle = GetNode<Marker2D>("AnimatedSprite2D/Muzzle");
-        var laser = scene.Instantiate() as Node2D;
+        var muzzle1 = GetNode<Marker2D>("AnimatedSprite2D/Muzzle1");
+		var muzzle2 = GetNode<Marker2D>("AnimatedSprite2D/Muzzle2");
+        var laser = scene.Instantiate() as laser;
+		Vector2 direction; // direction the laser shoots
+		
 
         if (laser != null && cooldown && canShoot)
         {
-
-            laser.Transform = muzzle.Transform;
-            laser.Rotate(muzzle.Rotation); // Align the laser with the muzzle's rotation
-
             GetTree().CurrentScene.AddChild(laser);
-			laser.GlobalPosition = muzzle.GlobalPosition;
+			// change the marker if player points to left
+			if (playerPointLeft) {
+				laser.GlobalPosition = muzzle2.GlobalPosition;
+				direction = new Vector2(muzzle2.Position.X, 0);
+				laser.Rotation = muzzle2.Rotation;
+			} else {
+				laser.GlobalPosition = muzzle1.GlobalPosition;
+				direction = new Vector2(muzzle1.Position.X, 0);
+				laser.Rotation = muzzle1.Rotation;
+			}
+			// change direction of lase based on the way the muzzle is pointed
+			laser.setDirection(direction);
 			cooldown = false;
 			GetNode<Timer>("LaserTimer").Start();
-	
         }
 	}
 	private void OnLaserTimerTimeout()
