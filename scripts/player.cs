@@ -1,9 +1,9 @@
 using Godot;
 using System;
+using System.Xml.Resolvers;
 
 public partial class player : Area2D
 {
-
 	[Signal]
 	public delegate void HitEventHandler();
 	// speed at which player moves
@@ -75,6 +75,10 @@ public partial class player : Area2D
 			// flip if velocity is negative
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
+		if (Input.IsActionPressed("shoot"))
+		{
+			Shoot();
+		}
 	}
 	private void OnBodyEntered(Node2D body)
 	{
@@ -82,5 +86,21 @@ public partial class player : Area2D
 		EmitSignal(SignalName.Hit);
 		// Must be deferred as we can't change physics properties on a physics callback.
 		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+	}
+	private void Shoot()
+	{
+		 var scene = GD.Load<PackedScene>("res://scenes/Laser.tscn"); // Adjust the path as needed
+        var muzzle = GetNode<Marker2D>("AnimatedSprite2D/Muzzle");
+        var laser = scene.Instantiate() as Node2D;
+
+        if (laser != null)
+        {
+
+            laser.Transform = muzzle.Transform;
+            laser.Rotate(muzzle.Rotation); // Align the laser with the muzzle's rotation
+
+            GetTree().CurrentScene.AddChild(laser);
+			laser.GlobalPosition = muzzle.GlobalPosition;
+        }
 	}
 }
