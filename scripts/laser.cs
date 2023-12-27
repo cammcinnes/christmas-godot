@@ -21,7 +21,7 @@ public partial class laser : Area2D
 	// set intial direction of the bullet
 	public void setDirection(Vector2 direction)
 	{
-		velocity = direction.Normalized();
+		velocity = direction;
 	}
 
 	// Called when the node enters the scene tree for the first time.

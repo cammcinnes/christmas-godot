@@ -99,12 +99,13 @@ public partial class player : Area2D
 	}
 	private void Shoot()
 	{
-
+		var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		var scene = GD.Load<PackedScene>("res://scenes/Laser.tscn"); // Adjust the path as needed
         var muzzle1 = GetNode<Marker2D>("AnimatedSprite2D/Muzzle1");
 		var muzzle2 = GetNode<Marker2D>("AnimatedSprite2D/Muzzle2");
         var laser = scene.Instantiate() as laser;
 		Vector2 direction;
+
 		// Get the mouse position
         var targetPosition = GetGlobalMousePosition();
 
@@ -117,7 +118,21 @@ public partial class player : Area2D
 			// change the marker if player points to left or right
 			if (playerPointLeft) {
 				laser.GlobalPosition = muzzle2.GlobalPosition;
+				// do not let player shoot behind them
+				if (direction.X > 0 && direction.Y > 0) {
+					direction = new Vector2(0,1);
+				}
+				if (direction.X > 0 && direction.Y < 0) {
+					direction = new Vector2(0,-1);
+				}
 			} else {
+				// do not let player shoot behind them
+				if (direction.X < 0 && direction.Y > 0) {
+					direction = new Vector2(0,1);
+				}
+				if (direction.X < 0 && direction.Y < 0) {
+					direction = new Vector2(0,-1);
+				}
 				laser.GlobalPosition = muzzle1.GlobalPosition;
 			}
 			// change direction of lase based on the way the muzzle is pointed
