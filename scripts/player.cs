@@ -99,25 +99,26 @@ public partial class player : Area2D
 	}
 	private void Shoot()
 	{
+
 		var scene = GD.Load<PackedScene>("res://scenes/Laser.tscn"); // Adjust the path as needed
         var muzzle1 = GetNode<Marker2D>("AnimatedSprite2D/Muzzle1");
 		var muzzle2 = GetNode<Marker2D>("AnimatedSprite2D/Muzzle2");
         var laser = scene.Instantiate() as laser;
-		Vector2 direction; // direction the laser shoots
-		
+		Vector2 direction;
+		// Get the mouse position
+        var targetPosition = GetGlobalMousePosition();
+
+        // Calculate the direction vector from the player to the mouse position
+        direction = (targetPosition - Position).Normalized();
 
         if (laser != null && cooldown && canShoot)
         {
             GetTree().CurrentScene.AddChild(laser);
-			// change the marker if player points to left
+			// change the marker if player points to left or right
 			if (playerPointLeft) {
 				laser.GlobalPosition = muzzle2.GlobalPosition;
-				direction = new Vector2(muzzle2.Position.X, 0);
-				laser.Rotation = muzzle2.Rotation;
 			} else {
 				laser.GlobalPosition = muzzle1.GlobalPosition;
-				direction = new Vector2(muzzle1.Position.X, 0);
-				laser.Rotation = muzzle1.Rotation;
 			}
 			// change direction of lase based on the way the muzzle is pointed
 			laser.setDirection(direction);

@@ -152,7 +152,7 @@ scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_5h6kw")
 
 [node name="LaserTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.25
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
 [connection signal="timeout" from="LaserTimer" to="." method="OnLaserTimerTimeout"]
