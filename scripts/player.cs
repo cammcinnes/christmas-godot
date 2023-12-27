@@ -10,6 +10,11 @@ public partial class player : Area2D
 	[Export]
 	public int Speed { get; set; } = 400;
 
+	
+
+	private Boolean cooldown = true;
+	private Boolean canShoot = false;
+
 	public Vector2 ScreenSize;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -20,6 +25,7 @@ public partial class player : Area2D
 	public void Start(Vector2 position)
 	{
 		Position = position;
+		canShoot = true;
 		Show();
 		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
 	}
@@ -82,6 +88,7 @@ public partial class player : Area2D
 	}
 	private void OnBodyEntered(Node2D body)
 	{
+		canShoot = false; 
 		Hide(); // Player disappears after being hit.
 		EmitSignal(SignalName.Hit);
 		// Must be deferred as we can't change physics properties on a physics callback.
@@ -89,11 +96,11 @@ public partial class player : Area2D
 	}
 	private void Shoot()
 	{
-		 var scene = GD.Load<PackedScene>("res://scenes/Laser.tscn"); // Adjust the path as needed
+		var scene = GD.Load<PackedScene>("res://scenes/Laser.tscn"); // Adjust the path as needed
         var muzzle = GetNode<Marker2D>("AnimatedSprite2D/Muzzle");
         var laser = scene.Instantiate() as Node2D;
 
-        if (laser != null)
+        if (laser != null && cooldown && canShoot)
         {
 
             laser.Transform = muzzle.Transform;
@@ -101,6 +108,14 @@ public partial class player : Area2D
 
             GetTree().CurrentScene.AddChild(laser);
 			laser.GlobalPosition = muzzle.GlobalPosition;
+			cooldown = false;
+			GetNode<Timer>("LaserTimer").Start();
+	
         }
+	}
+	private void OnLaserTimerTimeout()
+	{
+		cooldown = true;
+		GetNode<Timer>("LaserTimer").Stop();
 	}
 }

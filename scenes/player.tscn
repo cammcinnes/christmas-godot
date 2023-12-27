@@ -139,7 +139,7 @@ frame_progress = 0.980764
 speed_scale = 5.0
 
 [node name="Muzzle" type="Marker2D" parent="AnimatedSprite2D"]
-position = Vector2(5.33333, 1.66667)
+position = Vector2(6, 1.33333)
 scale = Vector2(0.333333, 0.333333)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -147,4 +147,8 @@ position = Vector2(3, 0.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_5h6kw")
 
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="timeout" from="LaserTimer" to="." method="OnLaserTimerTimeout"]
