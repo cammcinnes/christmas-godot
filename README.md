@@ -1,6 +1,6 @@
 # christmas-godot
 
-First Project using Godot 4.0. I followed the tutorial in the godot 4.0 manual for 2D game creation.
+First Project using Godot 4.0. I followed the tutorial in the godot 4.0 manual for 2D game creation and built the project using C#.
 
 References:
 - https://docs.godotengine.org/en/stable/getting_started/first_2d_game/03.coding_the_player.html
